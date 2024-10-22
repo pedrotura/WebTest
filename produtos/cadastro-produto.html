@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <h2>Cadastro de Produto</h2>
+        <form id="registerForm">
+            <div class="form-group">
+                <label for="registerName">Nome</label>
+                <input type="text" class="form-control" id="registerName">
+            </div>
+            <div class="form-group">
+                <label for="registerPrice">Preço</label>
+                <input type="number" class="form-control" id="registerPrice">
+            </div>
+            <div class="form-group">
+                <label for="registerAmountInStock">Quantidade no estoque</label>
+                <input type="number" class="form-control" id="registerAmountInStock">
+            </div>
+            <div class="form-group">
+                <label for="registerSubmissionDate">Data de criação</label>
+                <input type="date" class="form-control" id="registerSubmissionDate">
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Cadastrar</button>
+            <div class="alert alert-danger mt-3 d-none" id="registerError">Campos obrigatórios não preenchidos!</div>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('registerForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+            const name = document.getElementById('registerName').value;
+            const price = document.getElementById('registerPrice').value;
+            const amountInStock = document.getElementById('registerAmountInStock').value;
+            const submissionDate = document.getElementById('registerSubmissionDate').value;
+            const registerError = document.getElementById('registerError');
+
+            if (name && price && amountInStock && submissionDate) {
+                const products = JSON.parse(localStorage.getItem('products')) || [];
+                products.push({ name, price, amountInStock, submissionDate });
+                localStorage.setItem('products', JSON.stringify(products));
+                alert('Produto cadastrado com sucesso!');
+                window.location.href = 'listar-produtos.html';
+            } else {
+                registerError.classList.remove('d-none');
+            }
+
+        });
+    </script>
+</body>
+</html>

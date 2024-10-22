@@ -21,7 +21,7 @@
             <button type="submit" class="btn btn-success btn-block">Entrar</button>
             <div class="alert alert-danger mt-3 d-none" id="loginError">Usuário ou senha inválidos!</div>
             <div class="d-none" id="btnCadastrar">
-                <a id="btnCadastrar" href="cadastro.html">Criar cadastro</a>
+                <a id="btnCadastrar" href="cadastro-usuario.html">Criar cadastro</a>
             </div>
         </form>
     </div>
@@ -39,7 +39,7 @@
             if (user) {
                 alert(`Bem-vindo, ${user.name}!`);
                 loginError.classList.add('d-none'); 
-                window.location.href = 'listar.html'; 
+                window.location.href = 'listar-usuarios.html'; 
             } else {
                 loginError.classList.remove('d-none'); 
                 btnCadastro.classList.remove('d-none');
